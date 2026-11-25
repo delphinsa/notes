@@ -1,0 +1,259 @@
+####################################################################################################
+# RAPPORT JAVA4SHELL (CVE-2026-114938) - HERACLES-W2
+####################################################################################################
+Date              : 2026-11-25 16:57:21
+Serveur           : HERACLES-W2 - Microsoft Windows Server 2022 Standard (10.0.20348)
+Plateforme        : VMware, Inc. / VMware20,1
+Compte            : HERACLES-W2\saint.andre.delphin - administrateur : True
+PowerShell        : 5.1.20348.558
+Lecteurs scannes  : C:, X:
+
+STATUT PROPOSE    : IMPACTE - runtime vulnerable EN EXECUTION (voir detail)
+
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+CPU               : INTEL(R) XEON(R) GOLD 6526Y
+AVX-512 VBMI (.NET): non teste (necessite PowerShell 7.4+ / .NET 8, absent)
+Runtimes trouves  : 9  |  java/javaw en cours : 3  |  JVM embarquees : 6
+Vulnerables       : 1 (dont en execution : 1)  |  A verifier : 0  |  jvm.dll orphelins : 0
+
+Runtimes vulnerables :
+  - X:\SIDV_Logiciels\Java\jdk-21\bin\java.exe | 21.0.10 | HotSpot | UseAVX=3 UseBASE64Intrinsics=true | EN EXECUTION : PID 22660 (TeradataStudio.exe, JVM embarquee), PID 23880 (TeradataStudio.exe, JVM embarquee)
+
+====================================================================================================
+RUNTIMES JAVA (synthese)
+====================================================================================================
+
+Verdict      Version   JVM       UseAVX Base64Intrinsics Exec Path                                                                              
+-------      -------   ---       ------ ---------------- ---- ----                                                                              
+NON CONCERNE 1.8.0_341 HotSpot   -      -                non  C:\Program Files (x86)\Common Files\Oracle\Java\javapath\java.exe                 
+NON CONCERNE 1.8.0_341 HotSpot   -      -                non  C:\Program Files (x86)\Common Files\Oracle\Java\javapath_target_693607843\java.exe
+NON CONCERNE 1.8.0_345 HotSpot   -      -                non  X:\SIDV_Logiciel\Java\jre-8.0.345.1-hotspot\bin\java.exe                          
+NON CONCERNE 17.0.19   OpenJ9/J9 -      -                OUI  X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre\bin\java.exe                   
+NON CONCERNE 17.0.17   OpenJ9/J9 -      -                non  X:\SIDV_Logiciels\ibm\cognos\analytics\uninstall\jre\bin\java.exe                 
+NON CONCERNE 1.8.0_341 HotSpot   -      -                non  X:\SIDV_Logiciels\Java\jdk1.8.0_341\bin\java.exe                                  
+NON CONCERNE 1.8.0_341 HotSpot   -      -                OUI  X:\SIDV_Logiciels\Java\jdk1.8.0_341\jre\bin\java.exe                              
+VULNERABLE   21.0.10   HotSpot   3      true             OUI  X:\SIDV_Logiciels\Java\jdk-21\bin\java.exe                                        
+NON CONCERNE 1.8.0_341 HotSpot   -      -                non  X:\SIDV_Logiciels\Java\jre-8u341\bin\java.exe
+
+====================================================================================================
+RUNTIMES JAVA (detail)
+====================================================================================================
+
+--- C:\Program Files (x86)\Common Files\Oracle\Java\javapath\java.exe
+Verdict       : NON CONCERNE - Java 8
+JVM / version : HotSpot / 1.8.0_341
+UseAVX        : -   UseBASE64Intrinsics : -   (valeurs par defaut sur cet hote, HotSpot >= 17 uniquement)
+En execution  : non
+java -version :
+    java version "1.8.0_341"
+    Java(TM) SE Runtime Environment (build 1.8.0_341-b10)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.341-b10, mixed mode)
+
+--- C:\Program Files (x86)\Common Files\Oracle\Java\javapath_target_693607843\java.exe
+Verdict       : NON CONCERNE - Java 8
+JVM / version : HotSpot / 1.8.0_341
+UseAVX        : -   UseBASE64Intrinsics : -   (valeurs par defaut sur cet hote, HotSpot >= 17 uniquement)
+En execution  : non
+java -version :
+    java version "1.8.0_341"
+    Java(TM) SE Runtime Environment (build 1.8.0_341-b10)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.341-b10, mixed mode)
+
+--- X:\SIDV_Logiciel\Java\jre-8.0.345.1-hotspot\bin\java.exe
+Verdict       : NON CONCERNE - Java 8
+JVM / version : HotSpot / 1.8.0_345
+UseAVX        : -   UseBASE64Intrinsics : -   (valeurs par defaut sur cet hote, HotSpot >= 17 uniquement)
+En execution  : non
+java -version :
+    openjdk version "1.8.0_345"
+    OpenJDK Runtime Environment (Temurin)(build 1.8.0_345-b01)
+    OpenJDK 64-Bit Server VM (Temurin)(build 25.345-b01, mixed mode)
+
+--- X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre\bin\java.exe
+Verdict       : NON CONCERNE - JVM OpenJ9/J9 (pas HotSpot)
+JVM / version : OpenJ9/J9 / 17.0.19
+UseAVX        : -   UseBASE64Intrinsics : -   (valeurs par defaut sur cet hote, HotSpot >= 17 uniquement)
+En execution  : PID 15880 (java.exe), PID 12684 (java.exe), PID 6724 (java.exe), PID 18336 (cgsLauncher.exe, JVM embarquee), PID 18336 (cgsLauncher.exe, JVM embarquee), PID 18336 (cgsLauncher.exe, JVM embarquee)
+java -version :
+    java version "17.0.19" 2026-04-21
+    IBM Semeru Runtime Certified Edition 17.0.19.0 (build 17.0.19+10)
+    Eclipse OpenJ9 VM 17.0.19.0 (build 17.0.19+10-openj9-0.59.0, JRE 17 Windows Server 2022 amd64-64-Bit Compressed References 20260421_1224 (JIT enabled, AOT enabled)
+    OpenJ9   - c53b6b93f4
+    OMR      - 6426f03fa
+    JCL      - 47e62526f96 based on jdk-17.0.19+10)
+
+--- X:\SIDV_Logiciels\ibm\cognos\analytics\uninstall\jre\bin\java.exe
+Verdict       : NON CONCERNE - JVM OpenJ9/J9 (pas HotSpot)
+JVM / version : OpenJ9/J9 / 17.0.17
+UseAVX        : -   UseBASE64Intrinsics : -   (valeurs par defaut sur cet hote, HotSpot >= 17 uniquement)
+En execution  : non
+java -version :
+    java version "17.0.17" 2025-10-21
+    IBM Semeru Runtime Certified Edition 17.0.17.0 (build 17.0.17+10)
+    Eclipse OpenJ9 VM 17.0.17.0 (build 17.0.17+10-openj9-0.56.0, JRE 17 Windows Server 2022 amd64-64-Bit Compressed References 20251021_1083 (JIT enabled, AOT enabled)
+    OpenJ9   - 14b3b2de26
+    OMR      - d4c7e3040
+    JCL      - a6c26933734 based on jdk-17.0.17+10)
+
+--- X:\SIDV_Logiciels\Java\jdk1.8.0_341\bin\java.exe
+Verdict       : NON CONCERNE - Java 8
+JVM / version : HotSpot / 1.8.0_341
+UseAVX        : -   UseBASE64Intrinsics : -   (valeurs par defaut sur cet hote, HotSpot >= 17 uniquement)
+En execution  : non
+java -version :
+    java version "1.8.0_341"
+    Java(TM) SE Runtime Environment (build 1.8.0_341-b10)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.341-b10, mixed mode)
+
+--- X:\SIDV_Logiciels\Java\jdk1.8.0_341\jre\bin\java.exe
+Verdict       : NON CONCERNE - Java 8
+JVM / version : HotSpot / 1.8.0_341
+UseAVX        : -   UseBASE64Intrinsics : -   (valeurs par defaut sur cet hote, HotSpot >= 17 uniquement)
+En execution  : PID 1944 (odi64.exe, JVM embarquee)
+java -version :
+    java version "1.8.0_341"
+    Java(TM) SE Runtime Environment (build 1.8.0_341-b10)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.341-b10, mixed mode)
+
+--- X:\SIDV_Logiciels\Java\jdk-21\bin\java.exe
+Verdict       : VULNERABLE - version anterieure a 21.0.13.1 (premiere version corrigee)
+JVM / version : HotSpot / 21.0.10
+UseAVX        : 3   UseBASE64Intrinsics : true   (valeurs par defaut sur cet hote, HotSpot >= 17 uniquement)
+En execution  : PID 22660 (TeradataStudio.exe, JVM embarquee), PID 23880 (TeradataStudio.exe, JVM embarquee)
+java -version :
+    openjdk version "21.0.10" 2026-01-20 LTS
+    OpenJDK Runtime Environment Zulu21.48+17-CA (build 21.0.10+7-LTS)
+    OpenJDK 64-Bit Server VM Zulu21.48+17-CA (build 21.0.10+7-LTS, mixed mode, sharing)
+
+--- X:\SIDV_Logiciels\Java\jre-8u341\bin\java.exe
+Verdict       : NON CONCERNE - Java 8
+JVM / version : HotSpot / 1.8.0_341
+UseAVX        : -   UseBASE64Intrinsics : -   (valeurs par defaut sur cet hote, HotSpot >= 17 uniquement)
+En execution  : non
+java -version :
+    java version "1.8.0_341"
+    Java(TM) SE Runtime Environment (build 1.8.0_341-b10)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.341-b10, mixed mode)
+
+====================================================================================================
+PROCESSUS JAVA / JAVAW EN COURS
+====================================================================================================
+
+PID 15880 - X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre\bin\java.exe
+  Mitigation dans la ligne de commande : aucune
+  Ligne de commande : X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre/bin/java.exe -Xcompressedrefs -Djava.net.preferIPv4Stack=true -Xmx32192m -Xms16096m -Xgcpolicy:gencon -Xdump:heap+system:none -Xdump:system:events=gpf+abort,range=1..2,request=serial+compact+prepwalk -Xdump:system:events=systhrow+throw,filter=java/lang/OutOfMemory*,range=1..2,request=serial+compact+prepwalk -Xmn8048m -Xdisableexplicitgc "-Dcom.ibm.jsse2.overrideDefaultTLS=true" "-Djdk.map.althashing.threshold=512" "-Djdk.tls.maxHandshakeMessageSize=524288" "-Dcom.ibm.ws.classloading.tcclLockWaitTimeMillis=300000" "-Djava.rmi.server.hostname=HERACLES-W2" "-Dorg.xerial.snappy.tempdir=X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\..\bin64\../temp" "-Djava.library.path=X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\../bin64;X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\../drivers" "-Dorg.jboss.logging.provider=slf4j" "-Dcom.dremio.jdbc.shaded.io.netty.tryReflectionSetAccessible=true" "-verbose:gc" --add-exports java.xml/com.sun.org.apache.xerces.internal.jaxp=ALL-UNNAMED --add-exports java.rmi/sun.rmi.server=ALL-UNNAMED --add-exports java.base/jdk.internal.vm=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.net=ALL-UNNAMED --add-opens java.base/java.nio=ALL-UNNAMED --add-opens java.naming/javax.naming.spi=ALL-UNNAMED --add-opens java.naming/javax.naming=ALL-UNNAMED --add-opens java.management/javax.management=ALL-UNNAMED --add-exports jdk.naming.rmi/com.sun.jndi.url.rmi=ALL-UNNAMED --add-exports jdk.naming.dns/com.sun.jndi.dns=ALL-UNNAMED "-Xshareclasses:name=liberty-%u,nonfatal,cacheDir=X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\../wlp/usr/servers/.classCache" -XX:ShareClassesEnableBCI -Xscmx60m -Xscmaxaot4m -Xmcrs500M "-javaagent:X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\../wlp/bin/tools/ws-javaagent.jar" -jar "X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\../wlp/bin/tools/ws-server.jar" cognosserver
+
+PID 12684 - X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre\bin\java.exe
+  Mitigation dans la ligne de commande : aucune
+  Ligne de commande : X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre\bin\java.exe -Xms1024m -Xmx16384m -Xmnx6144m -Xmns512m -server --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.math=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.naming/javax.naming.spi=ALL-UNNAMED --add-opens=jdk.naming.rmi/com.sun.jndi.url.rmi=ALL-UNNAMED --add-opens=java.naming/javax.naming=ALL-UNNAMED --add-opens=java.rmi/java.rmi=ALL-UNNAMED --add-opens=java.management/javax.management=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED --add-exports=java.naming/com.sun.jndi.ldap=com.ibm.ws.jndi --add-opens=java.naming/com.sun.jndi.ldap=ALL-UNNAMED --add-opens=java.naming/com.sun.jndi.ldap=com.ibm.ws.jndi -Dcom.dremio.jdbc.shaded.io.netty.tryReflectionSetAccessible=true -Xscmx300m -Xshareclasses:cachedir=../javasharedresources,name=cognos10%u,nonfatal -Xmso512K -XX:+HeapManagementMXBeanCompatibility -Xjit:dontInline={gnu/trove/*},{gnu/trove/*}(disableLoopVersioner) -Dcom.ibm.jsse2.overrideDefaultTLS=true -Xcompressedrefs -verbose:gc -Xverbosegclog:X:\SIDV_Logiciels\ibm\cognos\analytics\logs\XQE\dq_verbosegc_%Y%m%d.%H%M%S.%pid.log,1,1000 -Xgcpolicy:gencon "-Xdump:tool:events=systhrow,filter=java/lang/OutOfMemoryError,exec='cmd.exe /c del /f /s X:\SIDV_Logiciels\ibm\cognos\analytics\data\.xqe.%pid > nul'" -DCOG_ROOT=X:/SIDV_Logiciels/ibm/cognos/analytics -DParentProcessID=15880 -Dorg.xerial.snappy.tempdir=X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\..\bin64\../temp -Dcubingservices_home=X:/SIDV_Logiciels/ibm/cognos/analytics/v5dataserver -Dcubingservices_data=X:\SIDV_Logiciels\ibm\cognos\analytics\data -DParentProcessPort=54941 -Djava.library.path=X:/SIDV_Logiciels/ibm/cognos/analytics/bin64;X:/SIDV_Logiciels/ibm/cognos/analytics/bin64\..\drivers; -Djava.rmi.server.hostname=HERACLES-W2 -DenableTraceServer -ea -Dorg.dom4j.QName.singleton.strategy=org.dom4j.util.PerThreadSingleton -Dorg.dom4j.DocumentFactory.singleton.strategy=org.dom4j.util.PerThreadSingleton -javaagent:bin/tools/ws-javaagent.jar -jar bin/tools/ws-server.jar dataset-service
+
+PID 6724 - X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre\bin\java.exe
+  Mitigation dans la ligne de commande : aucune
+  Ligne de commande : X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre\bin\java.exe -Xms1024m -Xmx8192m -XX:MaxDirectMemorySize=512m -XX:+IgnoreUnrecognizedVMOptions --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/jdk.internal.ref=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.nio.cs=ALL-UNNAMED --add-opens=java.base/sun.security.action=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=java.security.jgss/sun.security.krb5=ALL-UNNAMED -Djdk.reflect.useDirectMethodHandle=false -verbose:gc -Xverbosegclog:X:\SIDV_Logiciels\ibm\cognos\analytics\logs\XQE\flint_verbosegc_%Y%m%d.%H%M%S.%pid.log,1,1000 -javaagent:..\flint\libs\aspectjweaver-1.9.22.1.jar -Dlog4j.configuration=file:///X:/SIDV_Logiciels/ibm/cognos/analytics/configuration/flint-logging.xml -Dspark.master=local[*] -Dspark.sql.warehouse.dir=file:/X:/SIDV_Logiciels/ibm/cognos/analytics/temp/XQE/flint/warehouse -Dorg.xerial.snappy.tempdir=X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\..\bin64\../temp -Duser.timezone=UTC -Dinstall.dir=X:/SIDV_Logiciels/ibm/cognos/analytics -cp ..\flint\flint-server-jar-with-dependencies.jar;..\flint\libs\* com.ibm.ba.flint.server.FlintServerApp -appConf "X:\SIDV_Logiciels\ibm\cognos\analytics\configuration\flint-app.properties" -appConfStdIn -quiet -host localhost -port 0 -portFile "X:/SIDV_Logiciels/ibm/cognos/analytics/flint/flint.port" -minWorkers 5 -maxWorkers 1500 -scratchDir "X:\SIDV_Logiciels\ibm\cognos\analytics\temp\XQE\flint\scratch" -buffersDir "file:/X:/SIDV_Logiciels/ibm/cognos/analytics/temp/XQE/flint/buffers" -resultCacheDir "file:/X:/SIDV_Logiciels/ibm/cognos/analytics/temp/XQE/flint/resultCache" -keepAliveByStdIn
+
+====================================================================================================
+JVM EMBARQUEES DANS D'AUTRES PROCESSUS (jvm.dll charge)
+====================================================================================================
+
+PID 18336 - cgsLauncher.exe - X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre\bin\j9vm\jvm.dll
+  Ligne de commande : X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\cgsLauncher.exe -option COG_ROOT=X:/SIDV_Logiciels/ibm/cognos/analytics idleTimeLimitSec=900 connectionBacklog=50 -vmargs Xmx1g DuseNonAsync Xscmx100m Xshareclasses:cachedir=../javasharedresources,name=cgs1%u,nonfatal
+
+PID 18336 - cgsLauncher.exe - X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre\bin\default\jvm.dll
+  Ligne de commande : X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\cgsLauncher.exe -option COG_ROOT=X:/SIDV_Logiciels/ibm/cognos/analytics idleTimeLimitSec=900 connectionBacklog=50 -vmargs Xmx1g DuseNonAsync Xscmx100m Xshareclasses:cachedir=../javasharedresources,name=cgs1%u,nonfatal
+
+PID 18336 - cgsLauncher.exe - X:\SIDV_Logiciels\ibm\cognos\analytics\ibm-jre\jre\bin\default\j9vm29.dll
+  Ligne de commande : X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\cgsLauncher.exe -option COG_ROOT=X:/SIDV_Logiciels/ibm/cognos/analytics idleTimeLimitSec=900 connectionBacklog=50 -vmargs Xmx1g DuseNonAsync Xscmx100m Xshareclasses:cachedir=../javasharedresources,name=cgs1%u,nonfatal
+
+PID 1944 - odi64.exe - X:\SIDV_Logiciels\Java\jdk1.8.0_341\jre\bin\server\jvm.dll
+  Ligne de commande : C:\Oracle\Middleware\Oracle_Home\odi\studio\odi64.exe
+
+PID 22660 - TeradataStudio.exe - X:\SIDV_Logiciels\Java\jdk-21\bin\server\jvm.dll
+  Ligne de commande : "X:\SIDV_Outils\Binaires\Teradata\Studio\Teradata Studio nt-x8664\TeradataStudio.exe"  -data "C:\Users\antoine.jouvance\TeradataWorkspace"
+
+PID 23880 - TeradataStudio.exe - X:\SIDV_Logiciels\Java\jdk-21\bin\server\jvm.dll
+  Ligne de commande : "X:\SIDV_Outils\Binaires\Teradata\Studio\Teradata Studio nt-x8664\TeradataStudio.exe"  -data "C:\Users\herve.guercin\TeradataWorkspace"
+
+tasklist /m jvm.dll :
+    Nom de l'image                 PID Modules                                     
+    ========================= ======== ============================================
+    TeradataStudio.exe           22660 jvm.dll                                     
+    java.exe                     15880 jvm.dll, jvm.dll                            
+    cgsLauncher.exe              18336 jvm.dll, jvm.dll                            
+    java.exe                     12684 jvm.dll, jvm.dll                            
+    java.exe                      6724 jvm.dll, jvm.dll                            
+    TeradataStudio.exe           23880 jvm.dll                                     
+    odi64.exe                     1944 jvm.dll
+
+====================================================================================================
+OPTIONS EFFECTIVES DES JVM VULNERABLES EN COURS (jcmd VM.flags)
+====================================================================================================
+PID 22660 :       int UseAVX                                   = 3                                    {ARCH product} {default} |      bool UseBASE64Intrinsics                      = true                                      {product} {default}
+PID 23880 :       int UseAVX                                   = 3                                    {ARCH product} {default} |      bool UseBASE64Intrinsics                      = true                                      {product} {default}
+
+====================================================================================================
+VARIABLES D'ENVIRONNEMENT JAVA
+====================================================================================================
+JAVA_HOME          [Machine] X:\SIDV_Logiciels\Java\jdk1.8.0_341
+
+Entrees du PATH liees a Java :
+  [Machine] X:\SIDV_Logiciels\Java\jre-8u341\bin
+  [Machine] X:\SIDV_Logiciels\Java\jre-8.0.345.1-hotspot\bin
+  [Machine] X:\SIDV_Logiciels\Java\jdk-21\bin\
+  [Machine] C:\Program Files (x86)\Common Files\Oracle\Java\javapath
+
+Resolution de "java" dans le PATH de cette session (ordre) :
+  X:\SIDV_Logiciels\Java\jre-8u341\bin\java.exe
+  X:\SIDV_Logiciels\Java\jdk-21\bin\java.exe
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath\java.exe
+
+====================================================================================================
+SERVICES WINDOWS LIES A JAVA / TOMCAT / COGNOS
+====================================================================================================
+
+
+Name      : IBM Cognos
+State     : Running
+StartMode : Manual
+StartName : .\Administrateur
+PathName  : "X:\SIDV_Logiciels\ibm\cognos\analytics\bin64\cogbootstrapservice.exe"
+
+====================================================================================================
+TACHES PLANIFIEES LANCANT JAVA
+====================================================================================================
+(aucun)
+
+====================================================================================================
+LOGICIELS INSTALLES LIES A JAVA
+====================================================================================================
+
+DisplayName                                      DisplayVersion Publisher          InstallLocation                             
+-----------                                      -------------- ---------          ---------------                             
+Azul Zulu JDK 21.48.17 (21.0.10), 64-bit         21.48.17       Azul Systems, Inc. X:\SIDV_Logiciels\Java\jdk-21\              
+Azul Zulu JDK 22.30.13 (22.0.1), 64-bit          22.30.13       Azul Systems, Inc. X:\SIDV_Logiciels\Java\jdk-22\              
+Eclipse Temurin JRE avec Hotspot 8u345-b01 (x64) 8.0.345.1      Eclipse Adoptium   X:\SIDV_Logiciel\Java\jre-8.0.345.1-hotspot\
+Java 8 Update 341 (64-bit)                       8.0.3410.10    Oracle Corporation X:\SIDV_Logiciels\Java\jre-8u341\           
+Java Auto Updater                                2.8.341.10     Oracle Corporation                                             
+Java SE Development Kit 8 Update 341 (64-bit)    8.0.3410.10    Oracle Corporation X:\SIDV_Logiciels\Java\jdk1.8.0_341\
+
+====================================================================================================
+LIMITES DU CONTROLE
+====================================================================================================
+- AVX-512 VBMI ne peut pas etre lu directement sous Windows PowerShell 5.1 : se fier au modele de CPU
+  et a UseAVX (UseAVX < 3 = AVX-512 non visible par la JVM = non exploitable).
+- Sans droits administrateur, les lignes de commande et modules des processus d'autres comptes
+  peuvent manquer.
+- Une JVM 32 bits embarquee dans un processus 32 bits peut echapper a la detection des modules
+  depuis un PowerShell 64 bits (le scan disque la retrouve).
+- Les numeros de version corrigee varient selon les editeurs : un "VULNERABLE" sur une build
+  recente doit etre confronte aux notes de version de l'editeur.
+- Duree du controle : 70 s
