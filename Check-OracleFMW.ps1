@@ -4,7 +4,7 @@
     WebLogic, OPSS, OAM, OBIEE...) et des bases Oracle d'un serveur Windows.
 
 .DESCRIPTION
-    Check-OracleFMW.ps1 - v1.0 (26/11/2026)
+    Check-OracleFMW.ps1 - v1.1 (26/11/2026)
     Contexte : CSPU Oracle de novembre 2026
       CVE-2026-91569  WebLogic Server (TopLink Integration)
       CVE-2026-114824 Oracle Platform Security for Java (Centralized Thirdparty Jars)
@@ -47,7 +47,7 @@ param(
 )
 
 $ErrorActionPreference = 'Continue'
-$ScriptVersion = '1.0'
+$ScriptVersion = '1.1'
 $HostName = $env:COMPUTERNAME
 $Stamp = Get-Date -Format 'yyyyMMdd_HHmm'
 $Report = Join-Path $OutDir ('oraclefmw_{0}_{1}.txt' -f $HostName, $Stamp)
@@ -125,9 +125,28 @@ function Add-OH {
     if (-not $Path) { return }
     try { $p = (Resolve-Path -LiteralPath $Path -ErrorAction Stop).ProviderPath.TrimEnd('\') } catch { return }
     if (-not (Test-Path -LiteralPath $p -PathType Container)) { return }
-    foreach ($e in $OHs) { if ($e -ieq $p) { return } }
+    foreach ($e in $OHs) {
+        if ($e -ieq $p) { return }
+        # v1.1 : un dossier situe a l'interieur d'un Oracle Home deja retenu n'est pas un Oracle Home
+        if ($p.StartsWith($e + '\', [System.StringComparison]::OrdinalIgnoreCase)) { return }
+    }
+    # v1.1 : si des candidats deja retenus sont a l'interieur de celui-ci, on les retire
+    foreach ($e in @($OHs)) {
+        if ($e.StartsWith($p + '\', [System.StringComparison]::OrdinalIgnoreCase)) { [void]$OHs.Remove($e) }
+    }
     $OHs.Add($p)
     Out-Rep ('  -> Oracle Home candidat : {0}  (source : {1})' -f $p, $Source)
+}
+
+function Test-HomeShape {
+    # v1.1 : un vrai Oracle Home contient OPatch\opatch.bat ou inventory\ (evite cfgtoollogs\opatch, etc.)
+    param([string]$Path)
+    if (-not $Path) { return $false }
+    try {
+        if (Test-Path -LiteralPath (Join-Path (Join-Path $Path 'OPatch') 'opatch.bat')) { return $true }
+        if (Test-Path -LiteralPath (Join-Path $Path 'inventory') -PathType Container) { return $true }
+    } catch { }
+    return $false
 }
 
 function Add-Dom {
@@ -298,8 +317,9 @@ if (-not $NoDiskSearch) {
         $tops = Get-ChildItem -LiteralPath $d -Directory -Force -ErrorAction SilentlyContinue |
             Where-Object { $_.Name -notin @('Windows', '$Recycle.Bin', 'System Volume Information', 'Recovery') }
         foreach ($t in $tops) {
-            if ($t.Name -ieq 'OPatch') { Add-OH $d 'disque (OPatch)' }
+            if ($t.Name -ieq 'OPatch') { if (Test-HomeShape $d) { Add-OH $d 'disque (OPatch)' } }
             Get-ChildItem -LiteralPath $t.FullName -Directory -Recurse -Force -Filter 'OPatch' -ErrorAction SilentlyContinue |
+                Where-Object { Test-HomeShape $_.Parent.FullName } |
                 ForEach-Object { Add-OH $_.Parent.FullName ('disque ({0})' -f $d) }
         }
     }
